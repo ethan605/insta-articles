@@ -28,7 +28,10 @@ module InstaArticles
     def assign_elements_to_blocks(configs)
       by_blocks = {}
 
-      configs.elements.select {|e| !%w[box text headline].include?(e["type"])}.each do |element|
+      configs.elements.select {|e| !%w[box text headline image].include?(e["type"])}.each do |element|
+        is_hidden = element["is_hidden_in_mobile"] == true
+        next if is_hidden
+
         block_id = element["block"]
         by_blocks[block_id] ||= []
         by_blocks[block_id] << Element.new(element)

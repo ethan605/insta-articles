@@ -19,9 +19,9 @@ module InstaArticles
     def contents=(content_configs)
       begin
         klass = class_eval("InstaArticles::ElementTypes::#{@type.capitalize}")
-        @content = klass.new(content_configs)
+        @contents = klass.new(content_configs)
       rescue
-        @content = content_configs
+        @contents = content_configs
       end
     end
   end
