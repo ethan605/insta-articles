@@ -7,6 +7,11 @@ module InstaArticles
     attr_accessor :elements    
   end
 
+  def initialize(configs = {})
+    super(configs)
+    @elements = []
+  end
+
   def background_image=(image_url)
     @background_image = normalized_url(image_url)
   end
