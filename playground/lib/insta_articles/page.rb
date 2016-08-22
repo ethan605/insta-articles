@@ -24,6 +24,14 @@ module InstaArticles
       decode_custom_codes(configs)
     end
 
+    def render(filename = "lib/instapage.html")
+      template_file = "lib/insta_articles/views/page.html.haml"
+      haml_content = File.read(template_file)
+      engine = Haml::Engine.new(haml_content)
+      
+      File.write(filename, engine.render(self))
+    end
+
     private
     def assign_elements_to_blocks(configs)
       by_blocks = {}

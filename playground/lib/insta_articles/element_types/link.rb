@@ -4,6 +4,14 @@ module InstaArticles
       attr_accessor :id
       attr_accessor :type
       attr_accessor :href
+
+      def wrap(html)
+        if @type == "onpage"
+          "<a href='#{@href}'>#{html}</a>"
+        else
+          "<a href=''>#{html}</a>"
+        end
+      end
     end
   end
 end

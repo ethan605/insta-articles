@@ -1,6 +1,6 @@
 module InstaArticles
   module ElementTypes
-    class Html < Base
+    class Html < BaseElement
       attr_accessor :contents
       attr_accessor :base64
 

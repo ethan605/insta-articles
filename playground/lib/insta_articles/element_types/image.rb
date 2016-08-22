@@ -1,6 +1,6 @@
 module InstaArticles
   module ElementTypes
-    class Image < Base
+    class Image < BaseElement
       attr_accessor :image
       attr_accessor :image_width
       attr_accessor :image_height
@@ -14,6 +14,16 @@ module InstaArticles
 
       def link=(link_config)
         @link = Link.new(link_config)
+      end
+
+      def html_content
+        html = "<img src='#{@image}' title='#{@title}' alt='#{@alt}'>"
+
+        unless @link.blank?
+          @link.wrap(html)
+        else
+          html
+        end
       end
     end
   end

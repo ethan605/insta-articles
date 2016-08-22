@@ -1,6 +1,6 @@
 module InstaArticles
   module ElementTypes
-    class Button < Base
+    class Button < BaseElement
       attr_accessor :link
       attr_accessor :text
       attr_accessor :background_color

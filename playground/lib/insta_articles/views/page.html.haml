@@ -1,0 +1,11 @@
+%html
+  %head
+  %body
+    #i-page
+      - @blocks.each do |block|
+        %div{class: 'page-block', id: block.id}
+          .block-inner
+            - block.elements.each do |element|
+              %div{class: 'page-element', id: "element-#{element.id}"}
+                .contents
+                  = element.contents.html_content

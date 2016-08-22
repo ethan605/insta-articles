@@ -1,6 +1,6 @@
 module InstaArticles
   module ElementTypes
-    class Box < Base
+    class Box < BaseElement
       attr_accessor :background_color
       attr_accessor :background_image
 
