@@ -2,8 +2,7 @@ module InstaArticles
   class Page
     attr_reader :name
     attr_reader :blocks
-    attr_reader :custom_html
-    attr_reader :custom_js
+    attr_reader :custom_code
 
     def initialize(filename = "lib/instapage-sample.json")
       raw_data = JSON.parse(File.read(filename))
@@ -22,6 +21,7 @@ module InstaArticles
       @blocks = configs.page_blocks.map {|block| Block.new(block)}
 
       assign_elements_to_blocks(configs)
+      decode_custom_codes(configs)
     end
 
     private
@@ -38,6 +38,19 @@ module InstaArticles
       end
 
       @blocks.each {|block| block.elements = by_blocks[block.id] || []}
+    end
+
+    def decode_custom_codes(configs)
+      @custom_code = {}
+      
+      %w[html js].each do |type|
+        @custom_code[type] = {}
+
+        %w[head body footer].each do |position|
+          code = Base64.decode64(configs.custom_code[type][position]).force_encoding("utf-8")
+          @custom_code[type][position] = code
+        end
+      end
     end
   end
 end
